@@ -28,3 +28,10 @@
 | 018   | Andrés Rodriguez  | Añadir Staff| Funcional      | Positiva     | Se invita si el correo no hace parte del equipo de staff y no está vacio | Ninguno |
 | 019   | Andrés Rodriguez  | Añadir Staff| No funcional      | Positiva     | Se instalan nuevos themas para el ghost desde la configuración y haciendo click en el tema deseado | Ninguno |
 | 020   | Andrés Rodriguez  | Añadir Staff| No funcional      | Positiva     | Se activan los themas descargado al ingresar al panel de control de los themas y seleccionando activar | Ninguno |
+
+
+## Como ejecutar las pruebas
+1. Ingresar a la subcarpeta Playwright/test-playwright/
+2. Ejecutar `npm i playwrigth resemblejs`
+3. Ejecutar el comando node index.js para ejecutar las pruebas
+4. Ejecutar el comando node reporteGenrator.js para generar el reporte visual
