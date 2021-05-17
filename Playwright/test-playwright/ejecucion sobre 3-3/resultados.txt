@@ -1,0 +1,237 @@
+chromium-------------------------------------------
+
+Feature 1: Create new ghost
+    As an new user I want to create a new acount and a new Ghost in order to start my blog.
+
+  Scenario 1: Sign up failed with wrong inputs
+    Given I go to the ghost admin website
+      When I open the signup screen
+
+  --Feature 1 - scenario 1 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=reate your account →"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+  Scenario 2: Sign up failed with wrong inputs
+    Given I go to the ghost admin website
+      When I open the signup screen
+
+  --Feature 1 - scenario 2 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=reate your account →"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+  Scenario 3: Sign up failed with wrong inputs
+    Given I go to the ghost admin website
+      When I open the signup screen
+
+  --Feature 1 - scenario 3 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=reate your account →"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+  Scenario 4: Sign up succes with correct inputs
+    Given I go to the ghost admin website
+      When I open the signup screen
+
+  --Feature 1 - scenario 4 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=reate your account →"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+Feature 2: Create new member
+    As an admin I want to add a new member.
+
+  Scenario 1: Create member failed with wrong input
+    Given I go to the memebers on ghost admin site
+      When I click "New member" 
+
+  --Feature 2 - scenario 1 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New member"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 2: Create member failed with wrong input
+    Given I go to the memebers on ghost admin site
+      When I click "New member" 
+
+  --Feature 2 - scenario 2 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New member"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 3: Create member failed with wrong input
+    Given I go to the memebers on ghost admin site
+      When I click "New member"
+
+  --Feature 2 - scenario 3 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New member"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 4: Create member succes with correct input
+    Given I go to the memebers on ghost admin site
+      When I click "New member"
+
+  --Feature 2 - scenario 4 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New member"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 5: Create member failed with an already member email
+    Given I go to the memebers on ghost admin site
+      When I click "New member"
+
+  --Feature 2 - scenario 5 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New member"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+Feature 3: Create tag
+    As an admin I want to add a new tag.
+
+  Scenario 1: Create tag failed with wrong input
+    Given I go to the tags on ghost admin site
+      When I click "New Tag" 
+
+  --Feature 3 - scenario 1 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New tag"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 2: Create tag failed with wrong input
+    Given I go to the tags on ghost admin site
+      When I click "New Tag" 
+
+  --Feature 3 - scenario 2 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New tag"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 3: Create tag failed with wrong input
+    Given I go to the tags on ghost admin site
+      When I click "New Tag" 
+
+  --Feature 3 - scenario 3 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New tag"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 4: Create tag failed with wrong input
+    Given I go to the tags on ghost admin site
+      When I click "New Tag" 
+
+  --Feature 3 - scenario 4 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New tag"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 5: Create tag succes with correct input
+    Given I go to the tags on ghost admin site
+      When I click "New Tag" 
+
+  --Feature 3 - scenario 5 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=New tag"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+Feature 4: Create new staff
+    As an admin I want to add a new staff member.
+
+  Scenario 1: Create staff failed with wrong email
+    Given I go to the staff on ghost admin site
+      When I click "Invite people" 
+
+  --Feature 4 - scenario 1 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text='Invite people'"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 2: Create staff failed with wrong email
+    Given I go to the staff on ghost admin site
+      When I click "Invite people" 
+
+  --Feature 4 - scenario 2 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text='Invite people'"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 3: Create staff failed with wrong email
+    Given I go to the staff on ghost admin site
+      When I click "Invite people" 
+
+  --Feature 4 - scenario 3 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text='Invite people'"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 4: Create staff succes with correct email
+    Given I go to the staff on ghost admin site
+      When I click "invite people" 
+
+  --Feature 4 - scenario 4 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=Invite people"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+Feature 5: Themes
+    As an admin I want to add a new theme to the page.
+
+  Scenario 1: Install a new theme
+    Given I go to settings on ghost admin site
+      When I click Theme
+
+  --Feature 5 - scenario 1 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=Theme"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+
+  Scenario 2: Active a new theme
+    Given I go to settings on ghost admin site
+      When I click Activate
+
+  --Feature 5 - scenario 2 failed: TimeoutError: page.click: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for selector "text=ACTIVATE"
+============================================================
+Note: use DEBUG=pw:api environment variable to capture Playwright logs.
+
+#1 El servicio de miembros no funciona correctamente en la versión 3.3.0
+#2 en la feature 3, la versión 3.3.0 no tenía el input de color a diferencia de la versión 4.4.0
+#3 Al momento de seleccionar un tema, es necesario descargarlos para volverlos a cargar
+#4
