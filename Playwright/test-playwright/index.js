@@ -919,7 +919,7 @@ let datetime = new Date().toISOString().replace(/:/g,".");
   return;
 })();//Llamado propio de la función
 
-async function comparePhotos(feature, scenario, photo){
+async function comparePhotos(feature, scenario, photo, result){
     
     if (!fs.existsSync(`./results/${datetime}`)){
         fs.mkdirSync(`./results/${datetime}`, { recursive: true });}
@@ -929,7 +929,7 @@ async function comparePhotos(feature, scenario, photo){
         fs.readFileSync(`./screenshots/v4/${datetime}/feature${feature}/s${scenario}/${photo}.png`),
         options
     );
-    resultInfo = {
+    result = {
         isSameDimensions: data.isSameDimensions,
         dimensionDifference: data.dimensionDifference,
         rawMisMatchPercentage: data.rawMisMatchPercentage,
@@ -938,7 +938,6 @@ async function comparePhotos(feature, scenario, photo){
         analysisTime: data.analysisTime
     }
     fs.writeFileSync(`./results/${datetime}/compare-feat-${feature}-scen-${scenario}-photo-${photo}.png`, data.getBuffer());
-    return resultInfo;
 }
 
 function createReport(){
@@ -962,18 +961,19 @@ function createReport(){
                         <h2>Browser: ${f.featureName}</h2>
                         <h3>Browser: ${f.scenarioName}</h>
                         ${f.photos.map( p => {
-                            var resp = await comparePhotos(f.feature, f.scenario, p)
+                            var data
+                            comparePhotos(f.feature, f.scenario, p, data)
                             return `
-                                <p>Data: ${JSON.stringify(resp)}</p>
+                                <p>Data: ${JSON.stringify(data)}</p>
                                 </div>
                                 <div class="imgline">
                                 <div class="imgcontainer">
                                     <span class="imgname">v3.3.0</span>
-                                    <img class="img2" src="../screenshots/v3/${datetime}/feature${f.feature}/s${f.scenario}/${p}.png" id="refImage" label="Reference">
+                                    <img class="img2" src="../../screenshots/v3/${datetime}/feature${f.feature}/s${f.scenario}/${p}.png" id="refImage" label="Reference">
                                 </div>
                                 <div class="imgcontainer">
                                     <span class="imgname">v4.4.0</span>
-                                    <img class="img2" src="../screenshots/v4/${datetime}/feature${f.feature}/s${f.scenario}/${p}.png" id="testImage" label="Test">
+                                    <img class="img2" src="../../screenshots/v4/${datetime}/feature${f.feature}/s${f.scenario}/${p}.png" id="testImage" label="Test">
                                 </div>
                                 </div>
                                 <div class="imgline">
@@ -1015,5 +1015,5 @@ var featuresScenario = [
     {feature: 4, scenario: 3, featureName: "Invite staff", scenarioName: "Invite staff failed with wrong input", photos: [4]},
     {feature: 4, scenario: 4, featureName: "Invite staff", scenarioName: "Invite staff succed with correct input", photos: [4]},
     {feature: 5, scenario: 1, featureName: "Add theme", scenarioName: "", photos: [5]},
-    {feature: 5, scenario: 2, featureName: "Add theme", scenarioName: "", photos: [5]},
+    {feature: 5, scenario: 2, featureName: "Add theme", scenarioName: "", photos: [1]},
 ]
