@@ -962,7 +962,7 @@ function createReport(){
                         <h2>Browser: ${f.featureName}</h2>
                         <h3>Browser: ${f.scenarioName}</h>
                         ${f.photos.map( p => {
-                            var resp = comparePhotos(f.feature, f.scenario, p)
+                            var resp = await comparePhotos(f.feature, f.scenario, p)
                             return `
                                 <p>Data: ${JSON.stringify(resp)}</p>
                                 </div>
