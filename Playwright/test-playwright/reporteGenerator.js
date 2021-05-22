@@ -21,7 +21,7 @@ let datetimeUno;
 let datetimeDos;
 async function generateReport() {
   const numberTest = 7;
-  for (let i = 0; i < numberTest; i++) {
+  for (let i = 1; i < numberTest; i++) {
     const data = await compareImages(
       fs.readFileSync(`./screenshots/${datetimeUno}/feature${i}/s1/1.png`),
       fs.readFileSync(`./screenshots/${datetimeDos}/feature${i}/s1/1.png`),
@@ -44,7 +44,7 @@ async function generateReport() {
 
 function createHtmlReport(numberTest) {
   let images = [];
-  for (let i = 0; i < numberTest; i++) {
+  for (let i = 1; i < numberTest; i++) {
     images.push(`
         <div class="imgline">
         <div class="imgcontainer">
