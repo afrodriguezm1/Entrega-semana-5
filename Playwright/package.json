@@ -6,7 +6,7 @@
   "scripts": {
     "generate:apriori": "node generarDataApriori",
     "test": "jest --testPathIgnorePatterns=admin/",
-    "test:unit": "jest /tests/crear-publicacion.test.js",
+    "test:unit": "jest /tests/crear-pages.test.js",
     "test:admin": "jest /tests/admin/crear-ghost.test.js"
   },
   "keywords": [],
