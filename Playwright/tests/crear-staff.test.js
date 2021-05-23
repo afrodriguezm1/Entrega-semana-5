@@ -1,16 +1,58 @@
+const faker = require("faker");
 const { url: URL, screenshotFolder } = require("../config.json");
-const { iniciarSesion, VALID_USER } = require("./user_mock");
+const { iniciarSesion, USER_ADMIN } = require("./user_mock");
 const FEATURE_FOLDER = "feature4";
 
 const staff = [
-  { email: "", rol: "Author", error: "Please enter an email", scenario: 1 },
-  { email: " ", rol: "Editor", error: "Please enter an email", scenario: 2 },
-  {
-    email: VALID_USER.userEmail,
-    rol: "Administrator",
-    error: "A user with that email address already exists.",
-    scenario: 3,
-  },
+  [
+    "No debe crear staff, campos vacios",
+    { email: "", rol: "Author", error: "Please enter an email", scenario: 1 },
+  ],
+  [
+    "No debe crear staff, correo no valido (string generado con faker) y rol valido",
+    {
+      email: faker.random.words(100),
+      rol: "Author",
+      error: "Please enter an email",
+      scenario: 2,
+    },
+  ],
+  [
+    "No debe crear staff, correo no valido (string generado con faker) y rol valido no (string generado con faker)",
+    {
+      email: faker.random.words(100),
+      rol: faker.random.words(100),
+      error: "Please enter an email",
+      scenario: 3,
+    },
+  ],
+  [
+    "No debe crear staff, correo valido (correo generado con faker) y rol valido no (string generado con faker)",
+    {
+      email: faker.internet.email(),
+      rol: faker.random.words(100),
+      error: "Please enter an email",
+      scenario: 4,
+    },
+  ],
+  [
+    "No debe crear staff, correo valido (correo generado con faker) y rol valido",
+    {
+      email: faker.internet.email(),
+      rol: "Author",
+      error: "Please enter an email",
+      scenario: 5,
+    },
+  ],
+  [
+    "No debe crear staff, correo valido (correo ya registrado) y rol valido",
+    {
+      email: USER_ADMIN.userEmail,
+      rol: "Administrator",
+      error: "Please enter an email",
+      scenario: 6,
+    },
+  ],
 ];
 
 describe(`${FEATURE_FOLDER}: Create new staff\n\tAs an admin I want to add a new staff member.`, () => {
@@ -24,37 +66,34 @@ describe(`${FEATURE_FOLDER}: Create new staff\n\tAs an admin I want to add a new
     await page.goto(`${URL}/ghost/#/staff`);
   });
 
-  test.each(staff)(
-    "Scenario %#: Create staff failed with wrong email",
-    async (member) => {
-      // Given I go to the staff on ghost admin site")
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/1.png`,
-      });
+  test.each(staff)("Scenario %#: %s", async (description, member) => {
+    // Given I go to the staff on ghost admin site")
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/1.png`,
+    });
 
-      // When I click "Invite people"
-      await page.click("text='Invite people'", { force: true });
-      await page.waitForLoadState();
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/2.png`,
-      });
+    // When I click "Invite people"
+    await page.click("text='Invite people'", { force: true });
+    await page.waitForLoadState();
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/2.png`,
+    });
 
-      // And I fill with '${staff[i].email}' and click on ${staff[i].rol}
-      await page.fill('input[name="email"]', member.email);
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/3.png`,
-      });
+    // And I fill with '${staff[i].email}' and click on ${staff[i].rol}
+    await page.fill('input[name="email"]', member.email);
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/3.png`,
+    });
 
-      // And I try to Send invitation now
-      await page.click("text=Send invitation now");
-      await page.waitForLoadState();
+    // And I try to Send invitation now
+    await page.click("text=Send invitation now");
+    await page.waitForLoadState();
 
-      // Then I expect to see ${staff[i].error}
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/4.png`,
-      });
-    }
-  );
+    // Then I expect to see ${staff[i].error}
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${member.scenario}/4.png`,
+    });
+  });
 
   test(`Scenario ${
     staff.length + 1

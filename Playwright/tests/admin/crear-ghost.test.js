@@ -42,7 +42,7 @@ const signups = [
   [
     "No debe crear admin, correo no valido (string generado con faker) y password no valido (string generado con faker) y nombre del sitio vacio",
     {
-      site: "",
+      site: faker.company.companyName(),
       name: "",
       email: faker.random.words(10),
       password: faker.random.words(10),
