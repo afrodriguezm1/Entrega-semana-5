@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate:apriori": "node generarDataApriori",
     "test": "jest --testPathIgnorePatterns=admin/",
-    "test:tag": "jest /tests/themes.test.js",
     "test:admin": "jest /tests/admin/crear-ghost.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "faker": "^5.5.3",
     "jest": "^26.6.3",
     "jest-playwright-preset": "^1.5.2",
     "playwright": "^1.10.0",
@@ -19,6 +21,5 @@
   },
   "jest": {
     "preset": "jest-playwright-preset"
-    
   }
 }
