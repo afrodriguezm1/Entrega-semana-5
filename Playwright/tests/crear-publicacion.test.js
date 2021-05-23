@@ -1,6 +1,31 @@
+const faker = require("faker");
 const { url: URL, screenshotFolder } = require("../config.json");
 const { iniciarSesion } = require("./user_mock");
 const FEATURE_FOLDER = "feature7";
+
+const escenariosGeneracionDatos = [
+  [
+    "Debe crear post, titulo corto(string aleatorio generado con faker) y contenido corto (generado con faker)",
+    { title: faker.lorem.text(), body: faker.lorem.sentence(), scenario: 1 },
+  ],
+  [
+    "Debe crear post, titulo vacio y contenido largo (generado con faker)",
+    { title: "", body: faker.lorem.sentences(100), scenario: 3 },
+  ],
+  [
+    "Debe crear post, titulo con link(generado por faker) y contenido con link de una imagen (generado con faker) y contenido largo",
+    {
+      title: faker.internet.url(),
+      body: `${faker.image.imageUrl()}\n${faker.lorem.sentences(100)}`,
+      scenario: 4,
+    },
+  ],
+  [
+    "Create a post with title and empty body",
+    { title: faker.lorem.sentences(1), body: "", scenario: 5 },
+  ],
+  ["Create an empty post", { title: "", body: "", scenario: 6 }],
+];
 
 describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
   beforeAll(async () => {
@@ -12,56 +37,51 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
     await page.goto(`${URL}/ghost/#/site`);
   });
 
-  test("Scenario 1: Create an empty post", async () => {
-    await page.click('a[title="New post"]');
-    await page.click("textarea.gh-editor-title");
-    await page.click("div.koenig-editor__editor-wrapper");
+  test.each(escenariosGeneracionDatos)(
+    "Scenario %#: %s",
+    async (description, post) => {
+      await page.click('a[title="New post"]');
 
-    await page.waitForNavigation();
+      await page.click("textarea.gh-editor-title");
+      await page.fill("textarea.gh-editor-title", post.title);
 
-    const url = await page.url();
-    expect(url.includes("/editor/post/")).toBeTruthy();
+      await page.click("div.koenig-editor__editor-wrapper");
+      await page.fill(
+        "div.koenig-editor__editor.__mobiledoc-editor",
+        post.body
+      );
 
-    const titleTextContent = await page.$eval(
-      "textarea.gh-editor-title",
-      (el) => el.value
-    );
-    expect(titleTextContent).toEqual("(Untitled)");
+      await page.waitForNavigation();
+      const url = await page.url();
 
-    await page.click("div.gh-publishmenu");
-    await page.click(
-      "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
-    );
-    await page.screenshot({
-      path: `${screenshotFolder}/${FEATURE_FOLDER}/s1/1.png`,
-    });
-  });
+      const titleTextContent = await page.$eval(
+        "textarea.gh-editor-title",
+        (el) => el.value
+      );
+      expect(titleTextContent).toEqual(
+        post.title === "" ? "(Untitled)" : post.title
+      );
+      expect(url.includes("/editor/post/")).toBeTruthy();
 
-  test("Scenario 2: Create a post with title and empty body", async () => {
-    const POST_TITLE = "Primer post";
-    await page.click('a[title="New post"]');
-    await page.click("textarea.gh-editor-title");
-    await page.fill("textarea.gh-editor-title", POST_TITLE);
-    await page.click("div.koenig-editor__editor-wrapper");
-    await page.waitForNavigation();
-    const url = await page.url();
-    const titleTextContent = await page.$eval(
-      "textarea.gh-editor-title",
-      (el) => el.value
-    );
-    expect(titleTextContent).toEqual(POST_TITLE);
-    expect(url.includes("/editor/post/")).toBeTruthy();
-    await page.click("div.gh-publishmenu");
-    await page.click(
-      "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
-    );
-    await page.screenshot({
-      path: `${screenshotFolder}/${FEATURE_FOLDER}/s2/1.png`,
-    });
-  });
+      await page.screenshot({
+        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${post.scenario}/1.png`,
+      });
 
-  test("Scenario 3: Create a post with title and body", async () => {
-    const POST_TITLE = "Primer post";
+      await page.click("div.gh-publishmenu");
+      await page.click(
+        "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
+      );
+      await new Promise((r) => setTimeout(r, 200));
+      await page.screenshot({
+        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${post.scenario}/2.png`,
+      });
+    }
+  );
+
+  test(`Scenario ${
+    escenariosGeneracionDatos.length + 1
+  }: Doest not create a post with long title and long body`, async () => {
+    const POST_TITLE = faker.lorem.sentences(200);
     await page.click('a[title="New post"]');
 
     await page.click("textarea.gh-editor-title");
@@ -70,10 +90,9 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
     await page.click("div.koenig-editor__editor-wrapper");
     await page.fill(
       "div.koenig-editor__editor.__mobiledoc-editor",
-      "Contenido"
+      faker.lorem.sentences(200)
     );
 
-    await page.waitForNavigation();
     const url = await page.url();
 
     const titleTextContent = await page.$eval(
@@ -81,14 +100,15 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
       (el) => el.value
     );
     expect(titleTextContent).toEqual(POST_TITLE);
-    expect(url.includes("/editor/post/")).toBeTruthy();
+    expect(url.includes("/editor/post")).toBeTruthy();
 
-    await page.click("div.gh-publishmenu");
-    await page.click(
-      "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
-    );
+    const publishButton = await page.$$("div.gh-publishmenu");
+    expect(publishButton).toEqual([]);
+
     await page.screenshot({
-      path: `${screenshotFolder}/${FEATURE_FOLDER}/s3/1.png`,
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${
+        escenariosGeneracionDatos.length + 1
+      }/1.png`,
     });
-  });
+  }, 5000);
 });

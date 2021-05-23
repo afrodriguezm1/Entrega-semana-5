@@ -18,10 +18,14 @@ Tener instalado:
 ## Como ejecutar las pruebas
 
 1. Ingresar a la subcarpeta Playwright/
-2. Ejecutar `npm i ` para instalar todas las dependencias
-3. Ejecutar el comando `npm run test:admin` para ejecutar las pruebas de crear cuenta administrador
-4. Ejecutar el comando `npm run test` para ejecutar las pruebas, las pruebas de administrados van a fallar.
-5. Ejecutar el comando `node reporteGenrator.js` para generar el reporte visual
+2. Dentro del archivo config.json
+   - el atributo `url` define en que url esta corriendo ghost
+   - el atributo `screenshotFolder` en donde se guardaran los screenshots
+3. Ejecutar `npm i ` para instalar todas las dependencias
+4. Generar los datos a priori con el comando `npm run generate:apriori`, o usar los datos generados anteriormente dentro de la carpeta `tests/mocks/user.json`.
+5. Ejecutar el comando `npm run test:admin` para ejecutar las pruebas de crear cuenta administrador
+6. Ejecutar el comando `npm run test` para ejecutar las pruebas, las pruebas de administrador van a ser ignoradas.
+7. Ejecutar el comando `node reporteGenrator.js` para generar el reporte visual
 
 ## Escenarios de pruebas ejecutados
 
