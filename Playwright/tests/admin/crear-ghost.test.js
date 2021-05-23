@@ -1,34 +1,55 @@
+const faker = require("faker");
 const { url, screenshotFolder } = require("../../config.json");
-const { VALID_USER } = require("../user_mock");
+const { USER_ADMIN } = require("../user_mock");
 const FEATURE_FOLDER = "feature1";
 
 const mySite = "My site";
 
 const signups = [
-  {
-    site: "",
-    name: "",
-    email: "",
-    password: "",
-    error: "responses with error messages",
-    scenario: 1,
-  },
-  {
-    site: "My site",
-    name: "Admin",
-    email: "a@com",
-    password: "1234567890",
-    error: 'responses with "Invalid email"',
-    scenario: 2,
-  },
-  {
-    site: "My site",
-    name: "Admin",
-    email: "a@a.com",
-    password: "1234",
-    error: 'responses with "Invalid email"',
-    scenario: 3,
-  },
+  [
+    "No debe crear admin, correo no valido (string generado con faker), password no valido (string generado con faker) y nombre del sitio (string generado con faker)",
+    {
+      site: faker.random.words(10),
+      name: faker.random.words(10),
+      email: faker.random.words(10),
+      password: faker.random.words(10),
+      error: "responses with error messages",
+      scenario: 1,
+    },
+  ],
+  [
+    "No debe crear admin, correo vacio, password no valido (string generado con faker) y nombre del sitio (string generado con faker)",
+    {
+      site: faker.random.words(10),
+      name: "Admin",
+      email: "",
+      password: faker.random.words(10),
+      error: 'responses with "Invalid email"',
+      scenario: 2,
+    },
+  ],
+  [
+    "No debe crear admin, correo no valido (string generado con faker), password vacio y nombre del sitio (string generado con faker)",
+    {
+      site: faker.random.words(10),
+      name: "Admin",
+      email: faker.random.words(10),
+      password: "",
+      error: 'responses with "Invalid email"',
+      scenario: 3,
+    },
+  ],
+  [
+    "No debe crear admin, correo no valido (string generado con faker) y password no valido (string generado con faker) y nombre del sitio vacio",
+    {
+      site: "",
+      name: "",
+      email: faker.random.words(10),
+      password: faker.random.words(10),
+      error: 'responses with "Invalid email"',
+      scenario: 4,
+    },
+  ],
 ];
 
 describe(`${FEATURE_FOLDER}: Create new ghost\n\tAs an new user I want to create a new acount and a new Ghost in order to start my blog.`, () => {
@@ -38,37 +59,34 @@ describe(`${FEATURE_FOLDER}: Create new ghost\n\tAs an new user I want to create
     await page.waitForNavigation();
   });
 
-  test.each(signups)(
-    `Scenario %#: Failed LogIn empty inputs`,
-    async (signup) => {
-      // Given I go to the ghost admin website");
-      await page.goto(`${url}/ghost`);
-      await page.waitForLoadState();
+  test.each(signups)(`Scenario %#: %s`, async (description, signup) => {
+    // Given I go to the ghost admin website");
+    await page.goto(`${url}/ghost`);
+    await page.waitForLoadState();
 
-      // When I open the signup screen");
-      await page.click("text=Create your account");
-      await page.waitForLoadState();
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${signup.scenario}/1.png`,
-      });
+    // When I open the signup screen");
+    await page.click("text=Create your account");
+    await page.waitForLoadState();
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${signup.scenario}/1.png`,
+    });
 
-      await page.fill('input[name="blog-title"]', signup.site);
-      await page.fill('input[name="name"]', signup.name);
-      await page.fill('input[name="email"]', signup.email);
-      await page.fill('input[name="password"]', signup.password);
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${signup.scenario}/2.png`,
-      });
+    await page.fill('input[name="blog-title"]', signup.site);
+    await page.fill('input[name="name"]', signup.name);
+    await page.fill('input[name="email"]', signup.email);
+    await page.fill('input[name="password"]', signup.password);
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${signup.scenario}/2.png`,
+    });
 
-      //  And I try to login");
-      await page.click('button[type="submit"]');
+    //  And I try to login");
+    await page.click('button[type="submit"]');
 
-      //  Then I expect to see ${signup[i].error}`);
-      await page.screenshot({
-        path: `${screenshotFolder}/${FEATURE_FOLDER}/s${signup.scenario}/3.png`,
-      });
-    }
-  );
+    //  Then I expect to see ${signup[i].error}`);
+    await page.screenshot({
+      path: `${screenshotFolder}/${FEATURE_FOLDER}/s${signup.scenario}/3.png`,
+    });
+  });
 
   test(`Scenario ${
     signups.length + 1
@@ -82,9 +100,9 @@ describe(`${FEATURE_FOLDER}: Create new ghost\n\tAs an new user I want to create
     });
 
     await page.fill('input[name="blog-title"]', mySite);
-    await page.fill('input[name="name"]', VALID_USER.userName);
-    await page.fill('input[name="email"]', VALID_USER.userEmail);
-    await page.fill('input[name="password"]', VALID_USER.userPassword);
+    await page.fill('input[name="name"]', USER_ADMIN.userName);
+    await page.fill('input[name="email"]', USER_ADMIN.userEmail);
+    await page.fill('input[name="password"]', USER_ADMIN.userPassword);
     await page.screenshot({
       path: `${screenshotFolder}/${FEATURE_FOLDER}/s${
         signups.length + 1

@@ -22,7 +22,7 @@ Tener instalado:
    - el atributo `url` define en que url esta corriendo ghost
    - el atributo `screenshotFolder` en donde se guardaran los screenshots
 3. Ejecutar `npm i ` para instalar todas las dependencias
-4. Generar los datos a priori con el comando `npm run generate:apriori`, o usar los datos generados anteriormente dentro de la carpeta `mocks/user.json`.
+4. Generar los datos a priori con el comando `npm run generate:apriori`, o usar los datos generados anteriormente dentro de la carpeta `tests/mocks/user.json`.
 5. Ejecutar el comando `npm run test:admin` para ejecutar las pruebas de crear cuenta administrador
 6. Ejecutar el comando `npm run test` para ejecutar las pruebas, las pruebas de administrador van a ser ignoradas.
 7. Ejecutar el comando `node reporteGenrator.js` para generar el reporte visual

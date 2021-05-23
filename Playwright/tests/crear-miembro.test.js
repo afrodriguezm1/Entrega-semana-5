@@ -3,35 +3,41 @@ const { iniciarSesion } = require("./user_mock");
 const FEATURE_FOLDER = "feature2";
 
 const members = [
-  {
-    name: "",
-    labels: "",
-    email: "",
-    note: "",
-    suscribed: true,
-    error: 'response - "Please enter an email"',
-    scenario: 1,
-  },
+  [
+    {
+      name: "",
+      labels: "",
+      email: "",
+      note: "",
+      suscribed: true,
+      error: 'response - "Please enter an email"',
+      scenario: 1,
+    },
+  ],
 
-  {
-    name: " ",
-    labels: " ",
-    email: " ",
-    note: " ",
-    suscribed: true,
-    error: 'response - "Please enter an email"',
-    scenario: 2,
-  },
+  [
+    {
+      name: "",
+      labels: " ",
+      email: " ",
+      note: " ",
+      suscribed: true,
+      error: 'response - "Please enter an email"',
+      scenario: 2,
+    },
+  ],
 
-  {
-    name: "a",
-    labels: "a",
-    email: "a@a.com",
-    note: "jkkbhkjhbkhbkhbkhbkhbkhbkhbkhbkhjbkbhjbhbhbhbhbhbhbhbhbhbhbhbhbh bkhbkhjbkbhjbhbhbbkhbkhjbkbhjbhbhbjbkbhjbhbhb",
-    suscribed: true,
-    error: 'response - "Note is too long"',
-    scenario: 3,
-  },
+  [
+    {
+      name: "a",
+      labels: "a",
+      email: "a@a.com",
+      note: "jkkbhkjhbkhbkhbkhbkhbkhbkhbkhbkhjbkbhjbhbhbhbhbhbhbhbhbhbhbhbhbh bkhbkhjbkbhjbhbhbbkhbkhjbkbhjbhbhbjbkbhjbhbhb",
+      suscribed: true,
+      error: 'response - "Note is too long"',
+      scenario: 3,
+    },
+  ],
 ];
 
 describe(`${FEATURE_FOLDER}: Create new member\n\tAs an admin I want to add a new member.`, () => {
