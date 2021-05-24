@@ -3,7 +3,7 @@
 ## Integrantes
 
 - Nixon Fernando ortiz Suarez
-  - los escenarios de Nixon para la entrega de la semana 7 [aquí](https://github.com/afrodriguezm1/Entrega-semana-5/wiki/Escenarios-Nixon-Ortiz)
+  - 30 escenarios de Nixon para la entrega de la semana 7 [aquí](https://github.com/afrodriguezm1/Entrega-semana-5/wiki/Escenarios-Nixon-Ortiz)
 - Andrés Felipe Rodriguez Murillo
 
 ## Pre requisitos
