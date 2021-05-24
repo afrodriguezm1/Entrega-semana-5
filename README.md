@@ -24,9 +24,10 @@ Tener instalado:
    - el atributo `screenshotFolder` en donde se guardaran los screenshots
 3. Ejecutar `npm i ` para instalar todas las dependencias
 4. Generar los datos a priori con el comando `npm run generate:apriori`, o usar los datos generados anteriormente dentro de la carpeta `tests/mocks/user.json`.
-5. Ejecutar el comando `npm run test:admin` para ejecutar las pruebas de crear cuenta administrador
-6. Ejecutar el comando `npm run test` para ejecutar las pruebas, las pruebas de administrador van a ser ignoradas.
-7. Ejecutar el comando `node reporteGenrator.js` para generar el reporte visual
+5. En la carpeta Ghost, ejecute `ghost install 3.42.5 local` para desplegar el servicio del cliente
+6. Ejecutar el comando `npm run test:admin` para ejecutar las pruebas de crear cuenta administrador
+7. Ejecutar el comando `npm run test` para ejecutar las pruebas, las pruebas de administrador van a ser ignoradas.
+8. Ejecutar el comando `node reporteGenrator.js` para generar el reporte visual
 
 ## Escenarios de pruebas ejecutados
 
