@@ -10,21 +10,21 @@ const escenariosGeneracionDatos = [
   ],
   [
     "Debe crear page, titulo vacio y contenido largo (generado con faker)",
-    { title: "", body: faker.lorem.sentences(100), scenario: 3 },
+    { title: "", body: faker.lorem.sentences(50), scenario: 2 },
   ],
   [
     "Debe crear page, titulo con link(generado por faker) y contenido con link de una imagen (generado con faker) y contenido largo",
     {
       title: faker.internet.url(),
-      body: `${faker.image.imageUrl()}\n${faker.lorem.sentences(100)}`,
-      scenario: 4,
+      body: `${faker.image.imageUrl()}\n${faker.lorem.sentences(50)}`,
+      scenario: 3,
     },
   ],
   [
     "Create a page with title and empty body",
-    { title: faker.lorem.sentences(1), body: "", scenario: 5 },
+    { title: faker.lorem.sentences(1), body: "", scenario: 4 },
   ],
-  ["Create an empty page", { title: "", body: "", scenario: 6 }],
+  ["Create an empty page", { title: "", body: "", scenario: 5 }],
 ];
 
 describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
@@ -52,6 +52,7 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
       );
 
       await page.waitForNavigation();
+
       const url = await page.url();
 
       const titleTextContent = await page.$eval(
@@ -71,11 +72,13 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
       await page.click(
         "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
       );
+
       await new Promise((r) => setTimeout(r, 200));
       await page.screenshot({
         path: `${screenshotFolder}/${FEATURE_FOLDER}/s${post.scenario}/2.png`,
       });
-    }
+    },
+    4000
   );
 
   test(`Scenario ${

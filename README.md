@@ -3,6 +3,7 @@
 ## Integrantes
 
 - Nixon Fernando ortiz Suarez
+  - los escenarios de Nixon [aquí](https://github.com/afrodriguezm1/Entrega-semana-5/wiki/Escenarios-Nixon-Ortiz)
 - Andrés Felipe Rodriguez Murillo
 
 ## Pre requisitos
