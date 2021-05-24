@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate:apriori": "node generarDataApriori",
-    "test": "jest --testPathIgnorePatterns=admin/",
+    "test": "jest --testPathIgnorePatterns=admin/ --testPathIgnorePatterns=Nixon/",
     "test:admin": "jest /tests/admin/crear-ghost.test.js"
   },
   "keywords": [],

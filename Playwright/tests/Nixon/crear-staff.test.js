@@ -1,5 +1,5 @@
-const { url: URL, screenshotFolder } = require("../config.json");
-const { iniciarSesion, VALID_USER } = require("./user_mock");
+const { url: URL, screenshotFolder } = require("../../config.json");
+const { iniciarSesion, VALID_USER } = require("../user_mock");
 const FEATURE_FOLDER = "feature4";
 
 const staff = [

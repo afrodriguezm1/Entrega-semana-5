@@ -1,5 +1,5 @@
-const { url: URL, screenshotFolder } = require("../config.json");
-const { VALID_USER } = require("./user_mock");
+const { url: URL, screenshotFolder } = require("../../config.json");
+const { VALID_USER } = require("../user_mock");
 const FEATURE_FOLDER = "feature6";
 
 describe(`${FEATURE_FOLDER}:  Inicio de sesion Ghost Admin`, () => {

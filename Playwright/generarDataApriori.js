@@ -13,3 +13,11 @@ axios
     fs.writeFileSync(path.join(".", "mocks", "users.json"), json);
     console.log("Data generada en el archivo: ", `./mocks/users.json`);
   });
+
+axios
+  .get("https://my.api.mockaroo.com/publications.json?key=334ef270")
+  .then((response) => {
+    var json = JSON.stringify(response.data);
+
+    fs.writeFileSync(path.join(".", "mocks", "publications.json"), json);
+  })
