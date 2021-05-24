@@ -1,3 +1,4 @@
+const faker = require("faker");
 const { url: URL, screenshotFolder } = require("../config.json");
 const { iniciarSesion } = require("./user_mock");
 const FEATURE_FOLDER = "feature7";
@@ -24,21 +25,25 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
     await page.click("textarea.gh-editor-title");
     await page.click("div.koenig-editor__editor-wrapper");
 
-    await page.waitForNavigation();
+      await page.click("textarea.gh-editor-title");
+      await page.fill("textarea.gh-editor-title", post.title);
 
-    const url = await page.url();
-    expect(url.includes("/editor/post/")).toBeTruthy();
+      await page.click("div.koenig-editor__editor-wrapper");
+      await page.fill(
+        "div.koenig-editor__editor.__mobiledoc-editor",
+        post.body
+      );
 
     expect(titleTextContent).toEqual("(Untitled)");
 
-    await page.click("div.gh-publishmenu");
-    await page.click(
-      "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
-    );
-    await page.screenshot({
-      path: `${screenshotFolder}/${FEATURE_FOLDER}/s1/1.png`,
-    });
-  });
+      const titleTextContent = await page.$eval(
+        "textarea.gh-editor-title",
+        (el) => el.value
+      );
+      expect(titleTextContent).toEqual(
+        post.title === "" ? "(Untitled)" : post.title
+      );
+      expect(url.includes("/editor/post/")).toBeTruthy();
 
   test("Scenario 2: Create an empty post", async () => {
     await page.click('text="New post"');
@@ -102,20 +107,18 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
       content[0].content
     );
 
-    await page.waitForNavigation();
     const url = await page.url();
 
     const titleTextContent = await page.$eval(
       "textarea.gh-editor-title",
       (el) => el.value
     );
-    expect(titleTextContent).toEqual(content[0].LongTitle);
-    expect(url.includes("/editor/post/")).toBeTruthy();
+    expect(titleTextContent).toEqual(POST_TITLE);
+    expect(url.includes("/editor/post")).toBeTruthy();
 
-    await page.click("div.gh-publishmenu");
-    await page.click(
-      "button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view"
-    );
+    const publishButton = await page.$$("div.gh-publishmenu");
+    expect(publishButton).toEqual([]);
+
     await page.screenshot({
       path: `${screenshotFolder}/${FEATURE_FOLDER}/s4/1.png`,
     });
@@ -154,5 +157,6 @@ describe(`${FEATURE_FOLDER}: Creacion de publicaciones`, () => {
       });
     }
   )
+  });
 
 });
