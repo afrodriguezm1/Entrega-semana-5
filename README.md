@@ -1,10 +1,16 @@
-# Entrega de la semana 5
+# Entrega de la semana 8
 
 ## Integrantes
 
 - Nixon Fernando ortiz Suarez
   - 30 escenarios de Nixon para la entrega de la semana 7 [aquí](https://github.com/afrodriguezm1/Entrega-semana-5/wiki/Escenarios-Nixon-Ortiz)
 - Andrés Felipe Rodriguez Murillo
+
+## Documentación
+
+- Estrategia de pruebas [doc](https://drive.google.com/file/d/165mUDBGobWV97EYi0QXjtNML-VdpZU1u/view?usp=sharing)
+- Iventario de pruebas manuales [docs](https://drive.google.com/file/d/19j10nQYz0-uu4bw7Jhphu-4cd_GvfgW4/view?usp=sharing)
+
 
 ## Pre requisitos
 
