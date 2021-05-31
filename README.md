@@ -9,7 +9,7 @@
 ## Documentación
 
 - Estrategia de pruebas [doc](https://drive.google.com/file/d/165mUDBGobWV97EYi0QXjtNML-VdpZU1u/view?usp=sharing)
-- Iventario de pruebas manuales [docs](https://drive.google.com/file/d/19j10nQYz0-uu4bw7Jhphu-4cd_GvfgW4/view?usp=sharing)
+- Inventario de pruebas manuales [docs](https://drive.google.com/file/d/19j10nQYz0-uu4bw7Jhphu-4cd_GvfgW4/view?usp=sharing)
 
 
 ## Pre requisitos
